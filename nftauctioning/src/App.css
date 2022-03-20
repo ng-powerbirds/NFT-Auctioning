@@ -1,3 +1,8 @@
+body{
+  max-width: 100vw;
+  overflow-x: hidden;
+  height:2000px;
+}
 .navbar-default{
   display:flex;
   flex-direction:row;
@@ -17,4 +22,25 @@ h2{
   text-align:center;
   margin-top:100px;
   color:navy;
+}
+.intro-container{
+  width:100%;
+  height:400px;
+  padding: 0;
+  margin: 0;
+  background-attachment: fixed;
+  background-size:cover;
+  background-image: url('https://source.unsplash.com/3000x3000/?crypto');
+  margin-top:-50px;
+}
+.blur{
+  width:100%;
+  height:100%;
+  background-color: rgba(0,0,0,0.6);
+
+}
+.blur h2{
+  color: #fff;
+  padding-top:70px;
+  font-size:3em;
 }
