@@ -65,7 +65,7 @@ function App() {
                 NFT Auctioning
               </Typography>
               <Typography variant="h6" className={classes.space}>
-               LIve Auctions 
+               Live Auctions 
               </Typography>
               <Typography variant="h6" className={classes.space}>
                 Recent NFT Sales

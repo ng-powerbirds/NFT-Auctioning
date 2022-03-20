@@ -6,3 +6,15 @@
 .navbar-default .navbar-item{
   width:200px;
 }
+.card-contain{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-left:100px;
+  padding-right:100px;
+}
+h2{
+  text-align:center;
+  margin-top:100px;
+  color:navy;
+}
