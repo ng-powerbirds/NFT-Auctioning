@@ -8,3 +8,12 @@
 ### NFT site will
 #### Charge a service fee
 #### allow extension of reserve time 
+
+
+## Proccess
+### Sign up to the nft market place 
+### Connect to existing crypto wallet or create a new one 
+### Display Nfts listed for sale/auctioning 
+### Buyers place a bid request 
+### At auction close the seller receives notification of the top bids(via the application/platform)
+### The platform handles the transfer of tokens/funds 
