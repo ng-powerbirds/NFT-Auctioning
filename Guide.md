@@ -17,3 +17,5 @@
 ### Buyers place a bid request 
 ### At auction close the seller receives notification of the top bids(via the application/platform)
 ### The platform handles the transfer of tokens/funds 
+
+## TECH STACKS TO USE: Reach ,?????
