@@ -64,4 +64,11 @@ const amt = 1;
       Creator.publish();
       return [ highestBidder, lastPrice, currentPrice ];
     });
-});
+    //The transfer is made from the Bidder to the Creator for the bid amount lastPrice on the NFT
+    transfer(lastPrice).to(Creator);
+    transfer(amt, nftId).to(highestBidder);
+    commit();
+   // “each” participant listed can access the ShowOutcome method and see the outcome. 
+    each([Creator, Bidder], () => interact.showOutcome(highestBidder));
+    exit();
+   });
