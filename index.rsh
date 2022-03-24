@@ -24,6 +24,6 @@ export const main = Reach.App(() => {
 Creator.only(() => {
     const [ nftId, reservePrice, lenInBlocks ] = declassify(interact.getSale());
   });
-//make public creator content to network
-
+//make public creator's content to network
+Creator.publish(nftId, reservePrice, lenInBlocks);
 });
