@@ -26,4 +26,6 @@ Creator.only(() => {
   });
 //make public creator's content to network
 Creator.publish(nftId, reservePrice, lenInBlocks);
+const amt = 1;
+  commit();
 });
