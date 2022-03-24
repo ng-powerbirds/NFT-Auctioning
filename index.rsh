@@ -28,4 +28,8 @@ Creator.only(() => {
 Creator.publish(nftId, reservePrice, lenInBlocks);
 const amt = 1;
   commit();
+  Creator.pay([[amt, nftId]]);
+  // returns network time of the last publication of dApp
+  const end = lastConsensusTime() + lenInBlocks;
+  Bidder.interact.seeParams([nftId, reservePrice, end]);
 });
