@@ -1,20 +1,27 @@
 import React from 'react';
 import '../index.css';
+import {BrowserRouter as HashRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar'
-import Container from './components/Container'
+import Home from './Home';
 import Header from './components/Header'
+import Container from './components/Container'
+
 
 const exports = {};
 
 exports.Wrapper = class extends React.Component {
   render() {
-    const {content} = this.props;
     return (
-      <div className="App">
+      <>
         <Navbar/>
-        <Header/>
-        <Container/>
-      </div>
+        { /**<HashRouter>
+          <Routes>
+            <Route exact path="/Home" component={Home}/>
+          </Routes>
+      </HashRouter> */}
+      <Header/>
+      <Container/> 
+      </>
     );
   }
 }
