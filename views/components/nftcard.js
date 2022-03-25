@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 
 export default function Nftcard() {
   return (
-    <Card sx={{ maxWidth: 345, margin: 5 }}>
+    <Card sx={{ maxWidth:'400px', margin: 5, width:'400px' }}>
       <CardMedia
         component="img"
         height="140"
@@ -20,13 +20,14 @@ export default function Nftcard() {
           Lizard
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+          Minimum Bid : $1000<br/>
+          Current Bid : $1200 <br/>
+
         </Typography>
       </CardContent>
       <CardActions>
         <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button size="small">Place Bid</Button>
       </CardActions>
     </Card>
   );
