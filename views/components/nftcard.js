@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 
 export default function Nftcard() {
   return (
-    <Card sx={{ maxWidth:'400px', margin: 5, width:'400px' }}>
+    <Card sx={{ minWidth:'200px', margin: 5, width:'400px' }}>
       <CardMedia
         component="img"
         height="140"
