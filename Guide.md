@@ -19,3 +19,11 @@
 ### Buyers place a bid request 
 ### At auction close the seller receives notification of the top bids(via the application/platform)
 ### The platform handles the transfer of tokens/funds 
+
+## Views 
+### The creator adds the nftid(token), The lowest amount(reserved amount), The time duration for the auction(LeninBlocks)
+### The participants viewing the NFT and are able to bid. 
+#### Successful bid 
+#### Unsuccessful bid cause of lower amount than the reserved amount;
+#### Timeout error
+### The bidder who wins and exit the auction.
