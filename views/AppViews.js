@@ -1,27 +1,78 @@
 import React from 'react';
-import '../index.css';
-import {BrowserRouter as HashRouter, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar'
-import Home from './Home';
-import Header from './components/Header'
-import Container from './components/Container'
-
 
 const exports = {};
 
 exports.Wrapper = class extends React.Component {
   render() {
+    const {content} = this.props;
     return (
-      <>
-        <Navbar/>
-        { /**<HashRouter>
-          <Routes>
-            <Route exact path="/Home" component={Home}/>
-          </Routes>
-      </HashRouter> */}
-      <Header/>
-      <Container/> 
-      </>
+      <div className="App">
+        <header className="App-header" id="root">
+          <h1>NFT AUCTIONING</h1>
+          {content}
+        </header>
+      </div>
+    );
+  }
+}
+
+exports.ConnectAccount = class extends React.Component {
+  render() {
+    return (
+      <div className="text-box">
+          <p> Oppsss waiting to connect to your algorand account.<br/><br/>
+          This shouldn't take long though......</p>
+       </div>
+    )
+  }
+}
+
+exports.FundAccount = class extends React.Component {
+  render() {
+    const {bal, standardUnit, defaultFundAmt, parent} = this.props;
+    const amt = (this.state || {}).amt || defaultFundAmt;
+    return (
+      <div>
+        <h2>Fund account</h2>
+        <br />
+        Balance: {bal} {standardUnit}
+        <hr />
+        Would you like to fund your account with additional {standardUnit}?
+        <br />
+        (This only works on certain devnets)
+        <br />
+        <input
+          type='number'
+          placeholder={defaultFundAmt}
+          onChange={(e) => this.setState({amt: e.currentTarget.value})}
+        />
+        <button onClick={() => parent.fundAccount(amt)}>Fund Account</button>
+        <button onClick={() => parent.skipFundAccount()}>Skip</button>
+      </div>
+    );
+  }
+}
+
+exports.DeployerOrAttacher = class extends React.Component {
+  render() {
+    const {parent} = this.props;
+    return (
+      <div>
+        Please select a role:
+        <br />
+        <p>
+          <button
+            onClick={() => parent.selectDeployer()}
+          >Deployer</button>
+          <br /> Set the wager, deploy the contract.
+        </p>
+        <p>
+          <button
+            onClick={() => parent.selectAttacher()}
+          >Attacher</button>
+          <br /> Attach to the Deployer's contract.
+        </p>
+      </div>
     );
   }
 }
