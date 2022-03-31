@@ -7,6 +7,7 @@ const common = {
 const Params = Tuple(Token, UInt, UInt);
 
 export const main = Reach.App(() => {
+
   const Creator = Participant('Creator', {
     ...common,
     getSale: Fun([], Params),
