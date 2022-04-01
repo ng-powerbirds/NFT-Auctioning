@@ -4,11 +4,12 @@ const exports = {};
 
 exports.Wrapper = class extends React.Component {
   render() {
-    return (
+    const {content} = this.props;
+    return (    
       <div className="App">
         <header className="App-header" id="root">
-          <h1>NFT Auctioning</h1>
-          <button> Current Bid</button>
+          <h1>NFT Auctionings</h1>
+          {content}
         </header>
       </div>
     );
@@ -18,9 +19,9 @@ exports.Wrapper = class extends React.Component {
 exports.ConnectAccount = class extends React.Component {
   render() {
     return (
-      <div>
-        Please wait while we connect to your account.
-        If this takes more than a few seconds, there may be something wrong.
+      <div className="text-box">
+        <p> Oppsss waiting to connect to your algorand account.<br/><br/>
+          This shouldn't take long though......</p>
       </div>
     )
   }
@@ -52,24 +53,25 @@ exports.FundAccount = class extends React.Component {
   }
 }
 
-exports.DeployerOrAttacher = class extends React.Component {
+exports.SellerOrBidder = class extends React.Component {
   render() {
     const {parent} = this.props;
     return (
-      <div>
+      <div className="text-box">
         Please select a role:
         <br />
         <p>
+             Wanna Auction your NFT.<br /> <br/>
           <button
-            onClick={() => parent.selectDeployer()}
-          >Deployer</button>
-          <br /> Set the wager, deploy the contract.
+            onClick={() => parent.selectSeller()}
+          >Seller</button>
         </p>
         <p>
+           Wanna bid in the live auction. <br/> <br/>
           <button
-            onClick={() => parent.selectAttacher()}
-          >Attacher</button>
-          <br /> Attach to the Deployer's contract.
+            onClick={() => parent.selectBidder()}
+          >Bidder</button>
+          
         </p>
       </div>
     );

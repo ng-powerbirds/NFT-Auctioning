@@ -4,15 +4,18 @@ import AppViews from './views/AppViews';
 // import AttacherViews from './views/AttacherViews';
 import {renderDOM, renderView} from './views/render';
 import './index.css';
-// import * as backend from './build/index.main.mjs';// import the compiled backend
+import * as backend from './build/index.main.mjs';// import the compiled backend
 import {loadStdlib} from '@reach-sh/stdlib';//load stlib as reach 
-
-const reach = loadStdlib(process.env);
-
-const handToInt = {'ROCK': 0, 'PAPER': 1, 'SCISSORS': 2};//On these lines we define a few helpful constants and defaults for later, some corresponding to the enumerations we defined in Reach.
-const intToOutcome = ['Bob wins!', 'Draw!', 'Alice wins!'];
+const reach = loadStdlib(process.env);//
+reach.setWalletFallback(reach.walletFallback({}));
+//On these lines we define a few helpful constants and defaults for later, some corresponding to the enumerations we defined in Reach.
+//We have three default outcomes either Bob, Claire or Alice wins.
+//setting the default funt amount from your faucet network to 20 so that you can bid as much as you wish.
+//The default bid amount is 2. but it can change depending on the sellers/owners lowest price.
+// const handToInt = {'ROCK': 0, 'PAPER': 1, 'SCISSORS': 2};
+const intToOutcome = ['Bob wins!', 'Claire wins!', 'Alice wins!'];
 const {standardUnit} = reach;
-const defaults = {defaultFundAmt: '10', defaultWager: '3', standardUnit};
+const defaults = {defaultFundAmt: '20', defaultBidder: '2', standardUnit};
 
 class App extends React.Component {
   constructor(props) {
@@ -28,17 +31,17 @@ class App extends React.Component {
     if (await reach.canFundFromFaucet()) {// see if we can access the Reach developer testing network 
       this.setState({view: 'FundAccount'});// if canFundFaucet was true  we set the display to Fund Account dialog 
     } else {
-      this.setState({view: 'DeployerOrAttacher'});// If canFundFaucet was false  we set the component to skip 
+      this.setState({view: 'SellerOrBidder'});// If canFundFaucet was false  we set the component to skip 
     }
   }
-  async fundAccount(fundAmount) {// we define what happens when the user clicks the Fund Accont button 
+  async fundAccount(fundAmount) {// we define what happens when the user clicks the Fund Account button 
     await reach.fundFromFaucet(this.state.acc, reach.parseCurrency(fundAmount));//we transfer funds from the faucet to the users account 
-    this.setState({view: 'DeployerOrAttacher'});// we set the component state to display 
+    this.setState({view: 'SellerOrBidder'});// we set the component state to display 
   }
-  async skipFundAccount() { this.setState({view: 'DeployerOrAttacher'}); }// we define what to do when the user clicks the skip button, which is to set the component state to display 
-  selectAttacher() { this.setState({view: 'Wrapper', ContentView: Attacher}); }// we set the sub component based on whether the user clicks Deployer or Attacher
-  selectDeployer() { this.setState({view: 'Wrapper', ContentView: Deployer}); }
-  render() { return renderView(this, AppViews); }//we render the appropriate view from rps-9-web/views/AppViews.js.
+  async skipFundAccount() { this.setState({view: 'SellerOrBidder'}); }// we define what to do when the user clicks the skip button, which is to set the component state to display 
+  selectAttacher() { this.setState({view: 'Wrapper', ContentView: Bidder}); }// we set the sub component based on whether the user clicks Seller or Bidder
+  selectDeployer() { this.setState({view: 'Wrapper', ContentView: Seller}); }
+  render() { return renderView(this, AppViews); }//we render the appropriate view from NFT-Auctioning/views/AppViews.js.
 }
 
 // class Player extends React.Component {
