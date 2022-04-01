@@ -7,7 +7,6 @@ const common = {
 const Params = Tuple(Token, UInt, UInt);
 
 export const main = Reach.App(() => {
-
   const Creator = Participant('Creator', {
     ...common,
     getSale: Fun([], Params),
@@ -19,7 +18,7 @@ export const main = Reach.App(() => {
     seeParams: Fun([Params], Null),
     getBid: Fun([UInt], MUInt),
   });
-  init();
+  deploy();
 
   Creator.only(() => {
     const [ nftId, reservePrice, lenInBlocks ] = declassify(interact.getSale());
@@ -28,6 +27,7 @@ export const main = Reach.App(() => {
   const amt = 1;
   commit();
   Creator.pay([[amt, nftId]]);
+  // returns network time of the last publication of dApp
   const end = lastConsensusTime() + lenInBlocks;
   Bidder.interact.seeParams([nftId, reservePrice, end]);
 
@@ -36,7 +36,7 @@ export const main = Reach.App(() => {
       .invariant(balance(nftId) == amt && balance() == lastPrice)
       .while(lastConsensusTime() <= end)
       .case(Bidder,
-        () => {
+        (() => {
           const mbid = highestBidder != this
             ? declassify(interact.getBid(currentPrice))
             : MUInt.None();
@@ -44,14 +44,14 @@ export const main = Reach.App(() => {
             when: maybe(mbid, false, ((b) => b > currentPrice)),
             msg : fromSome(mbid, 0)
           });
-        },
-        (bid) => bid,
-        (bid) => {
+        }),
+        ((bid) => bid),
+        ((bid) => {
           require(bid > currentPrice);
           transfer(lastPrice).to(highestBidder);
           Creator.interact.seeBid(this, bid);
           return [ this, bid, bid ];
-        })
+        }))
       .timeout(absoluteTime(end), () => {
         Creator.interact.timeout();
         Creator.publish();

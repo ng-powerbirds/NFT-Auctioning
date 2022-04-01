@@ -4,12 +4,11 @@ const exports = {};
 
 exports.Wrapper = class extends React.Component {
   render() {
-    const {content} = this.props;
     return (
       <div className="App">
         <header className="App-header" id="root">
-          <h1>NFT AUCTIONING</h1>
-          {content}
+          <h1>NFT Auctioning</h1>
+          <button> Current Bid</button>
         </header>
       </div>
     );
@@ -19,10 +18,10 @@ exports.Wrapper = class extends React.Component {
 exports.ConnectAccount = class extends React.Component {
   render() {
     return (
-      <div className="text-box">
-          <p> Oppsss waiting to connect to your algorand account.<br/><br/>
-          This shouldn't take long though......</p>
-       </div>
+      <div>
+        Please wait while we connect to your account.
+        If this takes more than a few seconds, there may be something wrong.
+      </div>
     )
   }
 }
