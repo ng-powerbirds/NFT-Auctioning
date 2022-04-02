@@ -53,7 +53,7 @@ exports.FundAccount = class extends React.Component {
   }
 }
 
-exports.SellerOrBidder = class extends React.Component {
+exports.CreatorOrBidder = class extends React.Component {
   render() {
     const {parent} = this.props;
     return (
@@ -63,8 +63,8 @@ exports.SellerOrBidder = class extends React.Component {
         <p>
              Wanna Auction your NFT.<br /> <br/>
           <button
-            onClick={() => parent.selectSeller()}
-          >Seller</button>
+            onClick={() => parent.selectCreator()}
+          >Creator</button>
         </p>
         <p>
            Wanna bid in the live auction. <br/> <br/>
