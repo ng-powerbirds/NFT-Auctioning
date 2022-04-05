@@ -50,42 +50,82 @@ exports.SetParameters = class extends React.Component {
   handlebutton(){
     console.log(this.state.parameters)
   }
+
+  // handle submit button
+  handleSubmit(e) {
+    e.preventDefault();
+
+
+    /// send to the smart contract
+
+    console.log(this.state.parameters)
+
+
+    this.setState({
+      ...this.state,
+      parameters: {
+        nftid: "",
+        reservePrice: "",
+        limittime: ""
+      }
+    })
+  }
+
+  // end of handle submit 
   render() {
     const {parent, defaultReserveAmt, defaultTokenID, defaulttime} = this.props;
-    const getSale = (this.state || {}).parameters ;
 
     return (
       <div>
       <form onSubmit={this.handleSubmit}>
         <label>Enter The NFT ID </label>
             <input
-              type='number'
+             type='number'
               placeholder={defaultTokenID}
-              defaultValue={this.state.parameters.nftid}
-              onChange={this.handleChange}
+              value={this.state.parameters.nftid}
+              onChange={(e) => this.setState({
+                ...this.state,
+                parameters: {
+                  ...this.state.parameters,
+                  nftid: e.target.value
+                }
+              })}
             /> 
           <br/>
           <label>Enter Lowest ALGO Amount
             <input
-              type='number'
+            type='number'
               placeholder={defaultReserveAmt}
-              defaultValue={this.state.parameters.reservePrice}
-              onChange={this.handleChange}
+              value={this.state.parameters.reservePrice}
+              onChange={(e) => this.setState({
+                ...this.state,
+                parameters: {
+                  ...this.state.parameters,
+                  reservePrice: e.target.value
+                }
+              })}
             /> 
           </label><br/>
           <label>Enter the auction limit time:(minutes)
             <input
-              type='number'
+            type='number'
               placeholder={defaulttime}
-              defaultValue={this.state.parameters.limittime}
-              onChange={this.handleChange}
+              value={this.state.parameters.limittime}
+              onChange={(e) => this.setState({
+                ...this.state,
+                parameters: {
+                  ...this.state.parameters,
+                  limittime: e.target.value
+                }
+              })}
+              
             /> 
           </label>
         </form>    
         <br />
         <button
-          onClick={() => parent.setParameters(getSale)}
-        >Set Parameters</button>
+          onClick={(e) => this.handleSubmit(e) }
+        >Submit</button>
       </div>
     );
   }
@@ -93,10 +133,11 @@ exports.SetParameters = class extends React.Component {
 
 exports.Deploy = class extends React.Component {
   render() {
-    const {parent, limittime, reservePrice, nftid, standardUnit} = this.props;
+    const{nftid,limittime, reservePrice } = this.state.parameters;
+    const {parent, standardUnit} = this.props;
     return (
       <div>
-        Confirm the parameters: <strong>{nftid}</strong> {standardUnit}
+        Confirm the parameters: <strong>{nftid}</strong>{limittime} {reservePrice}
         <br />
         <button
           onClick={() => parent.deploy()}
