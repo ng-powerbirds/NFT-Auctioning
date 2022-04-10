@@ -20,7 +20,7 @@ exports.Wrapper = class extends React.Component {
 exports.SetParameters = class extends React.Component {
   constructor(props) {
     super(props);
-    this.state={
+    this.state={//set nft parameters
       parameters:{
         nftid:props.nftid,
         reservePrice:props.reservePrice,
